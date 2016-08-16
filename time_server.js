@@ -9,12 +9,15 @@ let minutes = date.getMinutes();
 
 const server = net.createServer(function listener(socket) {
   socket.write(
-    `${year}-${addZero(month + 1)}-${day} ${hour}:${minutes}\n`
+    `${year}-${addZero(month + 1)}-${addZero(day)} ${addZero(hour)}:${addZero(minutes)}\n`
   )
   socket.end()
 });
 server.listen(port);
 
 function addZero(i) {
-  return i < 10 ? '0' + i : i
+  if (i < 10) {
+    return '0' + i;
+  }
+  return i;
 }
